@@ -30,5 +30,17 @@ const factorial = function(num) {
 
 //OPERATION
 function operate(num1, num2, operation) {
-    
+
 }
+
+//DISPLAY
+const screen = document.getElementById("screen");
+let displayVal = "0";
+
+const oneBtn = document.getElementById("oneBtn");
+oneBtn.addEventListener("click", () => {
+    console.log("Working!")
+    screen.innerHtml = "1"
+});
+
+

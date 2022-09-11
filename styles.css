@@ -1,30 +1,86 @@
-html, body, #content {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+* {
+  border: 1px solid red;
+}
+
+html,
+body,
+#content {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "Helvetica", "Arial", sans-serif;
 }
 
 #content {
-    height: 90%;
-    background-color: #FAF9F6;
-    align-items: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#content {
+  height: 90%;
+  background-color: #faf9f6;
+  align-items: center;
 }
 
 #calculator {
-    width: 500px;
-    background-color: aqua;
-    color: white;
+  width: auto;
+  background-color: black;
+  color: white;
+  padding: 10px;
 }
 
 #screen {
-    background-color: black;
+  background-color: black;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: end;
+  padding: 0 10px 0 0;
+  font-size: 24px;
 }
 
 #buttonDiv {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 8px;
+}
+
+.btn {
+  border-radius: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border: 0px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.action {
+  background-color: rgb(160, 160, 160);
+}
+
+.operation {
+  background-color: rgb(236, 154, 0);
+  color: white;
+}
+
+.number {
+  background-color: rgb(49, 49, 49);
+  color: white;
+}
+
+#zeroBtn {
+  grid-column: span 2;
+  width: 88px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 18px;
+}
+
+#footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
 }
