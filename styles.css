@@ -34,10 +34,11 @@ body,
 #screen {
   background-color: black;
   margin-bottom: 5px;
-  display: flex;
-  justify-content: end;
   padding: 0 10px 0 0;
   font-size: 24px;
+  width: 180px;
+  word-wrap: break-word;
+  text-align: right;
 }
 
 #buttonDiv {
@@ -83,4 +84,9 @@ body,
   align-items: center;
   justify-content: center;
   height: 10%;
+}
+
+.activeAction {
+  background-color: white;
+  color: orange;
 }
