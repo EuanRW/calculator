@@ -7,12 +7,16 @@ const subtract = function (a, b) {
     return Number(a) - Number(b);
 };
 
-const multiply = function (array) {
-    return array.length > 0 ? Number(array.reduce((a, b) => a * b)) : 0;
+const multiply = function (a, b) {
+    return Number(a) * Number(b);
+};
+
+const divide = function (a, b) {
+    return Number(a) / Number(b);
 };
 
 const power = function (a, b) {
-    return a ** b;
+    return Number(a) ** Number(b);
 };
 
 const factorial = function (num) {
@@ -26,8 +30,14 @@ const factorial = function (num) {
 
 //#region OPERATION
 function operate(num1, num2, operation) {
-    if ((operation = "add")) {
+    if (operation == "add") {
         return add(num1, num2);
+    } else if (operation == "subtract") {
+        return subtract(num1, num2);
+    } else if (operation == "multiply") {
+        return multiply(num1, num2);
+    } else if (operation == "divide") {
+        return divide(num1, num2);
     }
 }
 //#endregion OPERATION
@@ -140,6 +150,7 @@ ACBtn.addEventListener("click", () => {
     displayVal = "0";
     currentOperation = "";
     previousNumber = 0;
+    decimalState = false;
     Array.from(document.querySelectorAll(".activeAction")).forEach((el) =>
         el.classList.remove("activeAction")
     );
@@ -184,36 +195,57 @@ let previousNumber = 0;
 let currentNumber = 0;
 let currentOperation = "";
 
-const addBtn = document.getElementById("addBtn");
-addBtn.addEventListener("click", () => {
+function operationButtonEventHandler(button, newOperation, currentOperation) {
     if (currentOperation != "") {
-        output = operate(
-            previousNumber,
-            numberFormatter(displayVal),
-            currentOperation
+        Array.from(document.querySelectorAll(".activeAction")).forEach((el) =>
+            el.classList.remove("activeAction")
         );
+
+        output = operate(previousNumber, Number(displayVal), currentOperation);
+
         displayVal = output;
-        previousNumber = numberFormatter(displayVal);
-        console.table({ previousNumber, displayVal, currentOperation });
+        previousNumber = displayVal;
         screen.innerText = numberFormatter(displayVal);
-        displayVal = "";
+
     } else {
-        previousNumber = numberFormatter(displayVal);
-        displayVal = "";
+        previousNumber = displayVal;
     }
 
-    addBtn.classList.add("activeAction");
-    currentOperation = "add";
+    decimalState = false;
+    displayVal = "";
+    button.classList.add("activeAction");
+    currentOperation = newOperation;
+    
+    console.table({ previousNumber, displayVal, currentOperation });
+    return currentOperation
+}
+
+const divideBtn = document.getElementById("divideBtn");
+divideBtn.addEventListener("click", () => {
+    currentOperation = operationButtonEventHandler(divideBtn, "divide", currentOperation);
+});
+
+const multiplyBtn = document.getElementById("multiplyBtn");
+multiplyBtn.addEventListener("click", () => {
+    currentOperation = operationButtonEventHandler(multiplyBtn, "multiply", currentOperation);
+});
+
+const subtractBtn = document.getElementById("subtractBtn");
+subtractBtn.addEventListener("click", () => {
+    currentOperation = operationButtonEventHandler(subtractBtn, "subtract", currentOperation);
+});
+
+const addBtn = document.getElementById("addBtn");
+addBtn.addEventListener("click", () => {
+    currentOperation = operationButtonEventHandler(addBtn, "add", currentOperation);
+    console.table({ previousNumber, displayVal, currentOperation });
+
 });
 
 let output = 0;
 const equalsBtn = document.getElementById("equalsBtn");
 equalsBtn.addEventListener("click", () => {
-    output = operate(
-        previousNumber,
-        numberFormatter(displayVal),
-        currentOperation
-    );
+    output = operate(previousNumber, Number(displayVal), currentOperation);
 
     displayVal = output;
 
